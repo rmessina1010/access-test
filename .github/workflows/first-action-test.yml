@@ -1,0 +1,31 @@
+name: Preview Enviroment
+on: 
+  workflow_dispatch:
+    branches:
+      - 'main'
+    inputs:
+      main:
+        description: 'main branch'     
+        required: true
+        default: 'main'
+jobs:
+  lint-test-name:
+    name: Lint test
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: run linter
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+
+   
+
+
+
+
+
+
